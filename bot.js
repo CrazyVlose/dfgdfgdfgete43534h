@@ -9,7 +9,7 @@ console.log("Silvester");
 
 
 client.on('message', async message =>{
-  var prefix = "#";
+  var prefix = "-";
 
 const ms = require("ms");
 if (message.author.omar) return;
@@ -115,7 +115,7 @@ if (message.content.startsWith(adminprefix + 'sa')) {
 });
 
 client.on("message", (message) => {
-    if (message.content.startsWith("#kick")) {
+    if (message.content.startsWith("-kick")) {
       if(!message.member.hasPermission('KICK_MEMBERS')) return message.reply('? :warning: you dont have a Permission sory');
           if (message.mentions.users.size < 1) return message.reply("**؟ Choose a person**");
         var member= message.mentions.members.first();
@@ -127,7 +127,7 @@ client.on("message", (message) => {
     }
 });
 client.on("message", (message) => {
-    if (message.content.startsWith("#ban")) {
+    if (message.content.startsWith("-ban")) {
       if(!message.member.hasPermission('BAN_MEMBERS')) return message.reply(':warning: you dont have a Permission sory');
         var member= message.mentions.members.first();
          if (message.mentions.users.size < 1) return message.reply("**؟ Choose a person**");
@@ -139,7 +139,7 @@ client.on("message", (message) => {
     }
 });
 
-var prefix = "#"
+var prefix = "-"
 client.on('message', msg => {
   if (msg.author.bot) return;
   if (!msg.content.startsWith(prefix)) return;
@@ -165,7 +165,7 @@ client.on('message', msg => {
 });
 
 client.on("message", message => {
-	var prefix = "#";
+	var prefix = "-";
 	var args = message.content.split(' ').slice(1); 
 	var msg = message.content.toLowerCase();
 	if( !message.guild ) return;
@@ -215,7 +215,7 @@ client.on("message", message => {
 
 
 client.on('message', message => {
-    if (message.content.startsWith("#avatar")) {
+    if (message.content.startsWith("-avatar")) {
         var mentionned = message.mentions.users.first();
     var x5bzm;
       if(mentionned){
@@ -232,7 +232,7 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-var prefix = "#";
+var prefix = "-";
        if(message.content === prefix + "mutec") {
                            if(!message.channel.guild) return message.reply('** This command only for servers**');
 
@@ -323,7 +323,7 @@ client.on('message', message => {
 })
 
 client.on("message", message => {
-    const prefix = "#"
+    const prefix = "-"
               
           if(!message.channel.guild) return;
    if(message.author.bot) return;
@@ -350,6 +350,31 @@ if(message.content === `${prefix}voiceonline`) {
     c.setName(`Orexn voice : ${message.guild.members.filter(g => g.voiceChannel).size} `)
     },1000);
   })
+
+}
+});
+
+ client.on('message', message => {
+	 var prefix ="-";
+ if(message.content.startsWith(prefix +"server")){
+if(!message.channel.guild) return message.reply(' ');
+const millis = new Date().getTime() - message.guild.createdAt.getTime();
+const now = new Date();
+dateFormat(now, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
+const verificationLevels = ['None', 'Low', 'Medium', 'Insane', 'Extreme'];
+const days = millis / 1000 / 60 / 60 / 24;
+let roles = client.guilds.get(message.guild.id).roles.map(r => r.name);
+var embed  = new Discord.RichEmbed()
+.setAuthor(message.guild.name, message.guild.iconURL)
+.addField("**🆔 Server ID:**", message.guild.id,true)
+.addField("**📅 Created On**", message.guild.createdAt.toLocaleString(),true)
+.addField("**👑 Owned by**",`${message.guild.owner.user.username}#${message.guild.owner.user.discriminator}`)
+.addField("**◼ Members **",`[${message.guild.memberCount}]`,true)
+.addField('**💬 Channels **',`**${message.guild.channels.filter(m => m.type === 'text').size}**` + ' text | Voice  '+ `**${message.guild.channels.filter(m => m.type === 'voice').size}** `,true)
+.addField("**🌍 Others **" , message.guild.region,true)
+.addField("** 🔐 Roles **",`**[${message.guild.roles.size}]** Role `,true)
+.setColor('#000000')
+message.channel.sendEmbed(embed)
 
 }
 });
